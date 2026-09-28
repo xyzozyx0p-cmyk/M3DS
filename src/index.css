@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0a0c10;
+    --panel: #141922;
+    --panel-2: #1b212c;
+    --line: #2a3341;
+    --text: #e8edf5;
+    --muted: #97a3b4;
+    --accent: #7cc44f;
+    --accent-2: #4fd6d2;
+    --ember: #ff8a1f;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "VT323", ui-monospace, monospace;
+    font-size: 20px;
+    line-height: 1.35;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, rgba(124, 196, 79, 0.12), transparent 60%),
+      radial-gradient(900px 500px at 90% 0%, rgba(79, 214, 210, 0.12), transparent 55%),
+      linear-gradient(180deg, #0a0c10 0%, #0d1118 40%, #0a0c10 100%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #0a0c10;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d1118;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a3341;
+    border: 3px solid #0d1118;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b4757;
+  }
+}
+
+@layer components {
+  .pixel-heading {
+    font-family: "Press Start 2P", ui-monospace, monospace;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  .panel {
+    background: linear-gradient(180deg, var(--panel-2) 0%, var(--panel) 100%);
+    border: 2px solid var(--line);
+    box-shadow:
+      inset 0 2px 0 rgba(255, 255, 255, 0.05),
+      0 8px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .btn {
+    @apply pixel-heading inline-flex items-center justify-center gap-2 border-2 px-5 py-3 text-xs transition-transform duration-100;
+    border-color: var(--line);
+    background: linear-gradient(180deg, #232c38, #171d26);
+    color: var(--text);
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.5);
+  }
+  .btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-primary {
+    border-color: #4d8b2c;
+    background: linear-gradient(180deg, #7cc44f, #4f8f2c);
+    color: #0b1207;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .btn-ember {
+    border-color: #a3520f;
+    background: linear-gradient(180deg, #ff8a1f, #c05a10);
+    color: #1a0e02;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .btn-ghost {
+    background: transparent;
+  }
+
+  .input {
+    @apply w-full border-2 px-4 py-3 text-lg;
+    background: #0d1219;
+    border-color: var(--line);
+    color: var(--text);
+    font-family: "VT323", ui-monospace, monospace;
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--accent-2);
+    box-shadow: 0 0 0 3px rgba(79, 214, 210, 0.15);
+  }
+  .input::placeholder {
+    color: #5b6675;
+  }
+
+  .label {
+    @apply mb-2 block text-sm uppercase tracking-widest;
+    color: var(--muted);
+  }
+
+  .chip {
+    @apply pixel-heading border-2 px-3 py-2 text-[10px];
+    border-color: var(--line);
+    color: var(--muted);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 18px rgba(124, 196, 79, 0.35);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 18px rgba(79, 214, 210, 0.4);
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+/* Small isometric block used in the UI. */
+.block-icon {
+  width: 34px;
+  height: 34px;
+  position: relative;
+  transform: scale(var(--icon-scale, 1));
+  image-rendering: pixelated;
+}
+.block-icon::before,
+.block-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.block-icon::before {
+  background: var(--block-color);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  filter: brightness(1.18) saturate(1.1);
+}
+.block-icon::after {
+  background: var(--block-color);
+  clip-path: polygon(0 25%, 50% 50%, 50% 100%, 0 75%);
+  filter: brightness(0.62);
+}
+
+.pixel-cursor {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><rect width='16' height='16' fill='white'/><rect x='4' y='4' width='8' height='8' fill='black'/></svg>") 4 4, crosshair;
+}
