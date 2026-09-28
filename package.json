@@ -1,0 +1,39 @@
+{
+  "name": "cubeworld",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pkill -f \"convex-local-back[e]nd\"; sleep 1; convex dev --start \"vite --host 0.0.0.0\" --typecheck disable",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "convex:push": "convex dev --once",
+    "typecheck": "tsc -b --noEmit",
+    "verify:api": "bun run scripts/verify-backend.ts",
+    "verify:editor": "bun run scripts/verify-editor.ts",
+    "verify:ui": "bun run scripts/verify-ui-auth.tsx && bun run scripts/verify-ui-studio.tsx"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
+    "convex": "^1.16.0",
+    "framer-motion": "^11.11.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.4",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "jsdom": "^30.1.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}
